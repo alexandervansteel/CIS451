@@ -1,0 +1,81 @@
+	.data
+val1:	1983
+val2:	2007
+val3:	5
+val4:	10
+val5:	0
+val6: 	0
+val7:	0
+val8:	0
+val9:	0
+val10: 	0
+memOri: 0
+memSlt: 0
+memSltu: 0
+
+	.text
+	lw $t0, val3
+	lw $t1, val4
+	ori $t2, $t0, 12
+	ori $t3, $t1, 10
+	lui $t4, 15
+	add $t5, $t4, $t0
+	sw $t5, val5
+
+	# Remember, this is a pseudo instruction!
+	lw $16, val1
+	lw $17, val2
+	ori $19, $16, 15
+	lui $20, 75
+
+	addi $16, $16, 17	
+
+	# store the value in val2 (remember, this is a pseduo instruction)
+	sw   $16, val2
+
+	# load the address of val2 into $18
+	la   $18, val2
+	sw $18, val7  
+	# store the value in the slot after val2
+
+	sw   $21, 8($18)
+
+	sw	 $16, 4($18)
+
+	lui	$t6, 10
+	lui $t7, 10
+	add $t6, $t6, $t7
+	addi $25, $t6, -10
+	sw $25, val6
+
+	and $t5, $t0, $t1
+	andi $t8, $t5, 15
+	sw $t5, val8
+	sw $t8, val9
+
+	nor $t5, $t1, $t0
+	or $t8, $t5, $t0
+	sw $t8, val10
+
+	ori $t5, $t0, 0
+	sw $t5, memOri
+
+	addi $s0, $0, 10
+	addi $s1, $0, 15
+	addi $s3, $0, -5
+	slt $t5, $s0, $s1
+	slti $t8, $s1, -5
+	add $s4, $t5, $t8
+	sw $s4, memSlt
+
+	slti $s5, $s3, 2147483647
+
+
+	addi $s0, $0, 10
+	addi $s1, $0, 4294967296
+	addi $s3, $0, -5
+	sltu $t5, $s0, $s1
+	slti $t8, $s1, 1
+	add $s4, $t5, $t8
+	sw $s4, memSltu
+

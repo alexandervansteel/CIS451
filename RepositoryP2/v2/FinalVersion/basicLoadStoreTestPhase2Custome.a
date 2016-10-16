@@ -1,0 +1,116 @@
+	.data
+val1:	1983
+val2:	2007
+maxSigned32: 2147483647
+minSigned32: -2147483648
+maxUnsigned32: 4294967296
+val3:	5
+val4:	10
+val5:	0
+val6: 	0
+val7:	0
+val8:	0
+val9:	0
+val10: 	0
+memOri: 0
+memSlt: 0
+memSltu: 0
+memSlti: 0
+memSltui: 0
+memSub: 0
+memSub2: 0
+memSubu: 0
+memSubu2: 0
+memXor: 0
+memXor2: 0
+memXori: 0
+memXori2: 0
+
+	.text
+	lw $t0, val3
+	lw $t1, val4
+	ori $t2, $t0, 12
+	ori $t3, $t1, 10
+	lui $t4, 15
+	add $t5, $t4, $t0
+	sw $t5, val5
+
+	#Testing lw
+	lw $16, val1
+	lw $17, val2
+	ori $19, $16, 15
+	lui $20, 75
+	addi $16, $16, 17	
+
+	
+	sw   $16, val2
+
+	# Testing la
+	la   $18, val2
+	sw $18, val7  
+
+	# store the value in the slot after val2
+	sw   $21, 8($18)
+	sw	 $16, 4($18)
+
+	lui	$t6, 10
+	lui $t7, 10
+	add $t6, $t6, $t7
+	addi $25, $t6, -10
+	sw $25, val6
+
+	#Testing and/andi
+	and $t5, $t0, $t1
+	andi $t8, $t5, 15
+	sw $t5, val8
+	sw $t8, val9
+
+	#testing nor/or
+	nor $t5, $t1, $t0
+	or $t8, $t5, $t0
+	sw $t8, val10
+
+	#testing ori
+	ori $t5, $t0, 0
+	sw $t5, memOri
+
+	#Testing addi, slt, sltu
+	lw $s5, maxUnsigned32
+	lw $s6, maxSigned32
+	addi $s0, $0, 10
+	addi $s1, $0, 15
+	addi $s3, $0, -5
+	
+	slt $t5, $s0, $s1
+	slti $t8, $s1, -5
+	add $s4, $t5, $t8
+	sw $s4, memSlt
+	slt $s7, $s3, $s6	
+	
+	sltu $t5, $s0, $s1
+	slti $t8, $s1, 1
+	add $s4, $t5, $t8
+	sw $s4, memSltu
+	sltu, $s4, $s1, $s5
+
+	#testing sub, subu
+	sub $s4, $s0, $s1
+	sub $t5, $s3, $s6
+	sw $t5, memSub
+	sw $s4, memSub2
+
+	subu $s4, $s5, $s1
+	subu $t5, $s6, $s0
+	sw $s4, memSubu
+	sw $t5, memSubu2
+
+	#Testing xor
+	xor $s4, $s0, $s1
+	xor $t5, $s0, $s3
+	sw $s4, memXor
+	sw $t5, memXor2
+
+	xori $s4, $s3, 0
+	xori $t5, $s1, 15
+	sw $s4, memXori
+	sw $t5, memXori2
