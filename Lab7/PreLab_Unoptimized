@@ -9,8 +9,8 @@ lw    r8, 24(r1)  ;   //loads item3 into r8
 lw    r9, 28(r1)  ;   //loads item4 into r9
 add   r7, r8, r9  ;   //adds item3 and item4 into r7
 sw    10(r1), r7  ;   //saves r7 into sum2
-noop;
-noop;
-noop;
-noop;
+nop;
+nop;
+nop;
+nop;
 trap #0;4
