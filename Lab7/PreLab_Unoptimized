@@ -1,0 +1,16 @@
+lw    r3, 4(r1)   ;   //loads item1 into r3
+lw    r4, 8(r1)   ;   //loads item2 into r4
+add   r2, r3, r4  ;   //adds item1 and item2 into r2
+sw    0(r1), r2   ;   //saves r2 into sum
+lw    r6, 16(r1)  ;   //loads tax into r6
+add   r5, r2, r6  ;   //adds sum and tax into r5
+sw    12(r1), r5  ;   //saves r5 into total
+lw    r8, 24(r1)  ;   //loads item3 into r8
+lw    r9, 28(r1)  ;   //loads item4 into r9
+add   r7, r8, r9  ;   //adds item3 and item4 into r7
+sw    10(r1), r7  ;   //saves r7 into sum2
+nop;
+nop;
+nop;
+nop;
+trap #0;4
