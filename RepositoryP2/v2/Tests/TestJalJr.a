@@ -1,9 +1,0 @@
-jal TOP
-addi $t0, $t0, 5
-j END
-
-TOP:
-	addi $t1,$t1, 10
-	jr $ra
-
-END:
